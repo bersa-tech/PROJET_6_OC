@@ -10,6 +10,10 @@
       href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Work+Sans&display=swap"
       rel="stylesheet"
     />
+    <script
+      src="https://kit.fontawesome.com/4b8d144e08.js"
+      crossorigin="anonymous"
+    ></script>
     <meta name="description" content="" />
     <link rel="stylesheet" href="./assets/login.css" />
   </head>
@@ -24,7 +28,9 @@
         <ul>
           <li><a href="/FrontEnd/index.html">projets</a></li>
           <li><a href="#contact">contact</a></li>
-          <li><a href="/FrontEnd/login.html" class="nav-login">login</a></li>
+          <li>
+            <a href="/FrontEnd/login.html" class="nav-login">login</a>
+          </li>
           <li>
             <a href="#"
               ><img src="./assets/icons/instagram.png" alt="Instagram"
@@ -60,7 +66,7 @@
             required="required"
             autocomplete="current-password"
           />
-          <!-- Zone d'affichage des erreurs avec js -->
+          <!-- Zone d'affichage des erreurs avec js const messageError -->
           <div id="error"></div>
           <input id="connection" type="submit" value="Se connecter" />
         </form>

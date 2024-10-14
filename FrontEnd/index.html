@@ -10,25 +10,42 @@
       href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Work+Sans&display=swap"
       rel="stylesheet"
     />
+    <script
+      src="https://kit.fontawesome.com/4b8d144e08.js"
+      crossorigin="anonymous"
+    ></script>
     <meta name="description" content="" />
     <link rel="stylesheet" href="./assets/style.css" />
   </head>
   <body>
+    <!-- Mode édition si userlog ok -->
+    <div id="navEdition">
+      <p><i class="fa-regular fa-pen-to-square"></i> Mode édition</p>
+    </div>
+
     <header>
-      <h1>Sophie Bluel <span>Architecte d'intérieur</span></h1>
+      <h1>
+        <a href="/FrontEnd/index.html">Sophie Bluel</a
+        ><span>Architecte d'intérieur</span>
+      </h1>
       <nav>
         <ul>
-          <li>projets</li>
-          <li>contact</li>
-          <li><a href="/FrontEnd/login.html">login</a></li>
-          <li><img src="./assets/icons/instagram.png" alt="Instagram" /></li>
+          <li><a href="#portfolio">projets</a></li>
+          <li><a href="#contact">contact</a></li>
+          <li><a href="/FrontEnd/login.html" class="nav-login">login</a></li>
+          <li>
+            <a href="#"
+              ><img src="./assets/icons/instagram.png" alt="Instagram"
+            /></a>
+          </li>
         </ul>
       </nav>
     </header>
+
     <main>
       <section id="introduction">
         <figure>
-          <img src="./assets/images/sophie-bluel.png" alt="" />
+          <img src="./assets/images/sophie-bluel.png" alt="Sophie Bluel" />
         </figure>
         <article>
           <h2>Designer d'espace</h2>
@@ -49,13 +66,20 @@
           </p>
         </article>
       </section>
+
       <section class="portfolio1" id="portfolio">
-        <h2>Mes Projets</h2>
+        <div class="portfolio_title">
+          <h2>Mes Projets</h2>
+          <span class="buttonModify"
+            ><i class="fa-regular fa-pen-to-square"></i> Modifier</span
+          >
+        </div>
         <!-- AJOUT POUR LES FILTRES -->
         <div class="filters"></div>
         <!-- La div gallery est codé avec javascript en utilsant .createElement -->
         <div class="gallery"></div>
       </section>
+
       <section id="contact">
         <h2>Contact</h2>
         <p>Vous avez un projet ? Discutons-en !</p>
@@ -79,7 +103,7 @@
       </nav>
     </footer>
     <script src="js/api.js" defer></script>
-    <script src="js/login.js" defer></script>
-    <script src="js/main.js" defer></script>
+    <script src="js/checkUser.js" defer></script>
+    <script src="js/modal.js" defer></script>
   </body>
 </html>
