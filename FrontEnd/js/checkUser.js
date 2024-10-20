@@ -23,7 +23,7 @@ async function checkUserConnected() {
     navEdition.style.display = "flex";
 
     // Affichage du bouton modifier
-    const buttonModify = document.querySelector(".buttonModify");
+    const buttonModify = document.querySelector(".button-modify");
     buttonModify.style.display = "block";
 
     // Les filtres sont masqués
@@ -42,7 +42,7 @@ async function checkUserConnected() {
     navEdition.style.display = "none";
 
     // Le bouton modifier est masqué
-    const buttonModify = document.querySelector(".buttonModify");
+    const buttonModify = document.querySelector(".button-modify");
     buttonModify.style.display = "none";
 
     // Les filtres sont visibles

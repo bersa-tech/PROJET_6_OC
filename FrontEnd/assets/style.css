@@ -2,7 +2,6 @@
    v2.0 | 20110126
    License: none (public domain)
 */
-
 html,
 body,
 div,
@@ -130,20 +129,22 @@ table {
 /** end reset css**/
 body {
   background-color: #fffef8;
-  max-width: 1140px;
-  margin: auto;
+  width: 100%;
   font-family: "Work Sans";
   font-size: 14px;
 }
 header {
   display: flex;
   justify-content: space-between;
-  margin: 50px 0;
+  margin: 50px 200px;
+}
+main {
+  max-width: 1500px;
+  margin: auto;
 }
 section {
-  margin: 50px 0;
+  margin: 50px 200px;
 }
-
 h1 {
   display: flex;
   flex-direction: column;
@@ -159,6 +160,11 @@ h1 > span {
   letter-spacing: 0.1em;
 }
 
+/* ajouter un lien de retour à l'accueil */
+h1 a {
+  text-decoration: none;
+  color: inherit;
+}
 h2 {
   font-family: "Syne";
   font-weight: 700;
@@ -171,17 +177,25 @@ nav ul {
   list-style-type: none;
 }
 nav li {
-  /* padding: 0px 40px 0px 0px; */
   padding: 0 10px;
   font-size: 1.2em;
+  text-decoration: none;
+  color: inherit; /* Inherit the color from the parent element */
+  cursor: pointer; /* Add this line to change the cursor to a pointer */
+}
+nav a {
+  text-decoration: none; /* Remove underline from links */
+  color: inherit;
 }
 
-li:hover {
+nav a:hover {
   color: #b1663c;
 }
+
 #introduction {
   display: flex;
   align-items: center;
+  margin: 50px 200px;
 }
 #introduction figure {
   flex: 1;
@@ -191,21 +205,28 @@ li:hover {
   margin: auto;
   width: 80%;
 }
-
 #introduction article {
   flex: 1;
 }
 #introduction h2 {
   margin-bottom: 1em;
 }
-
 #introduction p {
   margin-bottom: 0.5em;
 }
-#portfolio h2 {
-  text-align: center;
-  margin-bottom: 1em;
+
+.portfolio_title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+  height: 120px;
 }
+.portfolio1 span {
+  margin-bottom: -20px;
+}
+
+/* Galerie */
 .gallery {
   width: 100%;
   display: grid;
@@ -213,66 +234,9 @@ li:hover {
   grid-column-gap: 20px;
   grid-row-gap: 20px;
 }
-
 .gallery img {
   width: 100%;
 }
-#contact {
-  width: 50%;
-  margin: auto;
-}
-#contact > * {
-  text-align: center;
-}
-#contact h2 {
-  margin-bottom: 20px;
-}
-#contact form {
-  text-align: left;
-  margin-top: 30px;
-  display: flex;
-  flex-direction: column;
-}
-
-#contact input {
-  height: 50px;
-  font-size: 1.2em;
-  border: none;
-  box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
-}
-#contact label {
-  margin: 2em 0 1em 0;
-}
-#contact textarea {
-  border: none;
-  box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
-}
-
-input[type="submit"] {
-  font-family: "Syne";
-  font-weight: 700;
-  color: white;
-  background-color: #1d6154;
-  margin: 2em auto;
-  width: 180px;
-  text-align: center;
-  border-radius: 60px;
-}
-
-footer {
-  position: absolute; /* pour que le footer reste en bas de la page \*/
-  left: 0; /* pour que le footer reste à gauche de la page */
-  right: 0; /* pour que le footer prenne toute la largeur de l'écran */
-  width: 100%;
-  background-color: white;
-}
-
-footer nav ul {
-  display: flex;
-  justify-content: flex-end;
-  margin: 2em 9em;
-}
-
 /* Filtres */
 .filters {
   display: flex;
@@ -280,7 +244,7 @@ footer nav ul {
   justify-content: center;
   gap: 15px;
   margin-bottom: 60px;
-  margin-top: 70px;
+  margin-top: 20px;
 }
 .filtersNone {
   border: 1px solid #1d6154;
@@ -302,9 +266,7 @@ footer nav ul {
   background-color: #1d6154;
   color: white;
 }
-.portfolio1 h2 {
-  margin-top: 130px;
-}
+
 figcaption {
   font-family: Work Sans;
   font-size: 15px;
@@ -312,4 +274,284 @@ figcaption {
   line-height: 15.25px;
   text-align: left;
   margin-top: 5px;
+}
+#contact {
+  width: 30%;
+  margin: auto;
+}
+#contact > * {
+  text-align: center;
+}
+#contact h2 {
+  margin-bottom: 20px;
+}
+#contact form {
+  text-align: left;
+  margin-top: 30px;
+  display: flex;
+  flex-direction: column;
+}
+#contact input {
+  height: 50px;
+  font-size: 1.2em;
+  border: none;
+  box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
+}
+#contact label {
+  margin: 2em 0 1em 0;
+}
+#contact textarea {
+  border: none;
+  box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
+}
+input[type="submit"] {
+  cursor: pointer;
+  font-family: "Syne";
+  font-weight: 700;
+  color: white;
+  background-color: #1d6154;
+  margin: 2em auto;
+  width: 180px;
+  text-align: center;
+  border-radius: 60px;
+}
+
+/* Mode Edition */
+#navEdition {
+  display: none;
+  justify-content: center;
+  align-items: center;
+  background: black;
+  gap: 21px;
+  height: 59px;
+  color: white;
+}
+
+.button-modify {
+  display: none;
+  color: black;
+  cursor: pointer;
+  margin-top: -25px;
+  padding-left: 31px;
+}
+
+/* Modal open and close */
+.modal_container {
+  display: none;
+  overflow: auto;
+  position: fixed;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+}
+.modal_container.active {
+  display: block;
+}
+.overlay {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.3);
+}
+
+/* First Modal */
+.modal_one {
+  background: white;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  height: auto;
+  max-width: 630px;
+  width: 100%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.modal_one-gallery {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-left: 105px;
+  margin-right: 95px;
+  margin-top: 35px;
+}
+.modal_one-gallery img {
+  max-height: 102.57px;
+  max-width: 76.61px;
+}
+
+.deleteButton {
+  background: black;
+  border: none;
+  color: white;
+  cursor: pointer;
+  padding: 2.5px 3px;
+  position: relative;
+  top: -105px;
+  right: -53px;
+}
+.modal_one-bar {
+  border: 1px solid #b3b3b3;
+  max-width: 420px;
+  margin-bottom: 38px;
+  margin-left: 105px;
+  margin-top: 10px;
+}
+.modal_one-addbutton {
+  background: #1d6154;
+  border: none;
+  border-radius: 60px;
+  color: white;
+  cursor: pointer;
+  height: 36px;
+  margin-bottom: 25px;
+  margin-left: 195px;
+  width: 237px;
+  font-family: "Syne";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 14px;
+}
+
+/* Second Modal */
+.modal_two {
+  background: white;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  height: auto;
+  max-width: 630px;
+  width: 100%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.modal_two-imgcontainer {
+  align-items: center;
+  background: #e8f1f7;
+  border-radius: 3px;
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  height: 184px;
+  margin-bottom: 30px;
+  margin-top: 36px;
+  max-width: 420px;
+  width: 100%;
+}
+.modal_two-imgcontainer img {
+  height: 26.7%;
+  width: 20%;
+  position: absolute;
+  top: 122px;
+}
+.modal_two-icon {
+  color: #b9c5cc;
+  font-size: 48px;
+  margin-bottom: 21px;
+  margin-top: 28px;
+}
+.modal_two-form input[type="file"] {
+  display: none;
+}
+.modal_two-textAddPhoto {
+  color: #306685;
+  font-family: "Work Sans";
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 16px;
+  cursor: pointer;
+  background: #cbd6dc;
+  border: none;
+  border-radius: 50px;
+  max-height: 36px;
+  max-width: 173px;
+  padding: 10px 23px;
+  text-align: center;
+}
+.modal_two-description {
+  color: #444444;
+  font-family: "Work Sans";
+  font-weight: 400;
+  font-size: 10px;
+  margin-bottom: 19px;
+}
+.modal_two-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  justify-content: center;
+  margin-left: 105px;
+  max-width: 420px;
+  width: 95%;
+}
+.modal_two-form input {
+  height: 51px;
+  font-size: 1.2em;
+  border: none;
+  box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
+}
+.modal_two-form select {
+  background: white;
+  border: none;
+  box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
+  color: #6c6c6c;
+  height: 51px;
+}
+.modal_two-bar {
+  border: 1px solid #b3b3b3;
+  max-width: 420px;
+  margin-top: 35px;
+}
+.modal_two-form input[type="submit"] {
+  cursor: pointer;
+  font-family: "Syne";
+  font-weight: 700;
+  color: white;
+  background: #a7a7a7;
+  width: 237px;
+  height: 36px;
+  text-align: center;
+  border-radius: 60px;
+}
+.modal_two-form input[type="submit"].active {
+  background: #1d6154;
+}
+.modal_title {
+  color: black;
+  font-family: "Work Sans";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 26px;
+  margin-top: 60px;
+  text-align: center;
+}
+#errorForm {
+  color: red;
+  text-align: center;
+}
+.return_modal-one {
+  cursor: pointer;
+  font-size: 20px;
+  position: absolute;
+  left: 36px;
+  top: 25px;
+}
+.close_modal {
+  cursor: pointer;
+  font-size: 20px;
+  position: absolute;
+  right: 36px;
+  top: 25px;
+}
+footer {
+  width: 100%;
+  background-color: white;
+}
+footer nav ul {
+  display: flex;
+  justify-content: flex-end;
+  padding: 20px 80px;
 }

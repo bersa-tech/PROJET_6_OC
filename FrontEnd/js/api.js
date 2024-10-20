@@ -21,7 +21,7 @@ async function getWorks() {
     .then((dataWorks) => {
       // `console.table(dataWorks)` affiche les données sous forme de tableau dans la console,
       // ce qui permet de visualiser plus facilement les travaux récupérés.
-      console.table(dataWorks); // Affiche les travaux sous forme de tableau
+      // console.table(dataWorks); // Affiche les travaux sous forme de tableau
 
       // Sélection de l'élément HTML ayant la classe `.gallery`, qui contiendra les travaux.
       // `document.querySelector` permet de cibler un élément dans le DOM.
