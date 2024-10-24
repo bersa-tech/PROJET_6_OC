@@ -10,7 +10,6 @@ async function checkUserConnected() {
   const token = localStorage.getItem("token");
   // console.log(token);
   const userConnected = token != null && token != undefined && token != "";
-
   // Si l'utilisateur est connecté
   if (userConnected) {
     // Login devient LOGOUT + déconnexion au clique avec la fonction userLogout
@@ -36,26 +35,21 @@ async function checkUserConnected() {
     // Logout redevient LOGIN
     const navLogin = document.querySelector(".nav-login");
     navLogin.textContent = "login";
-
     // Les éléments de la barre d'édition sont masqués
     const navEdition = document.getElementById("navEdition");
     navEdition.style.display = "none";
-
     // Le bouton modifier est masqué
     const buttonModify = document.querySelector(".button-modify");
     buttonModify.style.display = "none";
-
     // Les filtres sont visibles
     const divFilters = document.querySelector(".filters");
     divFilters.style.display = "flex";
   }
 }
-
 // Fonction de déconnexion
 function userLogout() {
   localStorage.clear(); // Nettoyage du localStorage => suppression du token
   window.location.reload(); // Rechargement de la page
 }
-
 // Appel de la fonction pour vérifier si l'utilisateur est connecté au chargement de la page
 checkUserConnected();

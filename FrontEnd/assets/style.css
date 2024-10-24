@@ -506,7 +506,7 @@ input[type="submit"] {
   margin-top: 35px;
 }
 .modal_two-form input[type="submit"] {
-  cursor: pointer;
+  cursor: initial;
   font-family: "Syne";
   font-weight: 700;
   color: white;
@@ -518,6 +518,7 @@ input[type="submit"] {
 }
 .modal_two-form input[type="submit"].active {
   background: #1d6154;
+  cursor: pointer;
 }
 .modal_title {
   color: black;

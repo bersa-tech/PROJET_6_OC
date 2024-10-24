@@ -28,6 +28,7 @@ function openAndCloseModal() {
   modalContainer.classList.toggle("active"); // variation de la class active pour le open and close
   modalOne.style.display = "flex";
   modalTwo.style.display = "none";
+  resetForm();
 }
 
 // Fonction pour accéder à la deuxième modale
@@ -132,36 +133,74 @@ inputImage.addEventListener("change", previewPicture);
 function previewPicture(event) {
   event.preventDefault();
 
-  const reader = new FileReader(); // On crée un nouvel objet FileReader pour lire l'image
-  reader.readAsDataURL(inputImage.files[0]); // On lit le fichier image
-  reader.addEventListener("load", () => {
-    const previewImage = document.createElement("img");
-    previewImage.setAttribute("id", "previewImage"); // ajoute id pour pouvoir la supprimer lors du reset du formulaire
-    previewImage.src = reader.result;
-    previewImage.style.width = "140px"; // attribution de la largeur
-    previewImage.style.height = "183px";
+  const file = inputImage.files[0]; // Récupération du fichier
+  const maxSize = 4 * 1024 * 1024; // 4 Mo en octets
+  const acceptTypes = ["image/jpeg", "image/png"]; // Extensions acceptées
 
-    // On relie l'image au parent imgcontaineur
-    const pictureContainer = document.querySelector(".modal_two-imgcontainer");
-    pictureContainer.appendChild(previewImage);
+  if (file) {
+    // Vérification de la taille
+    if (file.size > maxSize) {
+      inputImage.value = ""; // Vide la valeur de l'input file
+      errorForm.style.display = "flex";
+      errorForm.innerText = "L'image dépasse la taille maximum de 4 Mo.";
+      validateProject.classList.remove("active");
+      validateProject.disabled = true;
+      return; // Sortir de la fonction si l'image est trop grande
+    }
 
-    // Cacher le label de texte pendant la prévisualisation
-    const labelPicture = document.querySelector(".modal_two-textAddPhoto");
-    labelPicture.style.display = "none";
-  });
+    // Vérification de l'extension
+    if (!acceptTypes.includes(file.type)) {
+      // Si le type de fichier n'est pas dans le tableau des types acceptés, on affiche un message d'erreur
+      inputImage.value = ""; // Vide la valeur de l'input file
+      errorForm.style.display = "flex";
+      errorForm.innerText =
+        "Seules les images au format jpg et png sont acceptées.";
+      validateProject.classList.remove("active");
+      validateProject.disabled = true;
+      return; // Sortir de la fonction si l'image est trop grande
+    }
+
+    const reader = new FileReader(); // On crée un nouvel objet FileReader pour lire l'image
+    reader.readAsDataURL(file); // On lit le fichier image
+    reader.addEventListener("load", () => {
+      const previewImage = document.createElement("img");
+      previewImage.setAttribute("id", "previewImage"); // ajoute id pour pouvoir la supprimer lors du reset du formulaire
+      previewImage.src = reader.result;
+      previewImage.style.width = "140px"; // attribution de la largeur
+      previewImage.style.height = "183px";
+
+      // On relie l'image au parent imgcontaineur
+      const pictureContainer = document.querySelector(
+        ".modal_two-imgcontainer"
+      );
+      pictureContainer.appendChild(previewImage);
+
+      // Cacher le label de texte pendant la prévisualisation
+      const labelPicture = document.querySelector(".modal_two-textAddPhoto");
+      labelPicture.style.display = "none";
+
+      verifForm(); // Vérifier si le formulaire est valide
+    });
+  }
 }
 
 // Fonction pour supprimer l'image prévisualisée si on clique dessus
 const selectPreview = document.querySelector(".modal_two-imgcontainer");
 selectPreview.addEventListener("click", removePreviewImage);
+
 function removePreviewImage() {
   const previewImageSelected = document.getElementById("previewImage");
   if (previewImageSelected) {
-    previewImage.remove(); // Supprime l'image de la prévisualisation
+    previewImageSelected.remove(); // Supprime l'image de la prévisualisation
+    inputImage.value = ""; // Vide la valeur de l'input file
   }
+
   // Rendre le label visible à nouveau
   const labelPicture = document.querySelector(".modal_two-textAddPhoto");
   labelPicture.style.display = "block"; // Rendre le label visible à nouveau
+
+  // Appeler verifForm pour mettre à jour la validation du formulaire
+  verifForm();
 }
 
 // Ajout des catégories au formulaire a partir de l'API
@@ -184,18 +223,23 @@ fetch("http://localhost:5678/api/categories")
 inputImage.addEventListener("input", verifForm);
 titleProject.addEventListener("input", verifForm);
 categoryProject.addEventListener("input", verifForm);
+
 // Fonction pour passer le bouton "Valider" au vert si les champs sont remplis
 function verifForm() {
+  // Vérifie si les trois champs sont remplis
   if (
-    titleProject.value !== "" &&
+    titleProject.value.trim() !== "" &&
     categoryProject.value !== "" &&
-    inputImage.value !== ""
+    inputImage.value !== "" // vérifier si l'image est bien présente
   ) {
     errorForm.style.display = "none";
     validateProject.classList.add("active"); // Ajoute la classe active
+    validateProject.disabled = false; // Activer le bouton
   } else {
-    errorForm.innerText = "Veuillez renseigner tous les champs";
-    validateProject.classList.remove("active"); // retrait de la classe active
+    errorForm.style.display = "flex";
+    errorForm.innerText = "Veuillez renseigner tous les champs"; // Afficher message d'erreur
+    validateProject.classList.remove("active"); // Retirer la classe active
+    validateProject.disabled = true; // Désactiver le bouton
   }
 }
 
@@ -254,11 +298,15 @@ function resetForm() {
 
   const previewImageSelected = document.getElementById("previewImage");
   if (previewImageSelected) {
-    previewImage.remove(); // Supprime l'image de la prévisualisation
+    previewImageSelected.remove(); // Supprime l'image de la prévisualisation
   }
+
   // Rendre le label visible à nouveau
   const labelPicture = document.querySelector(".modal_two-textAddPhoto");
   labelPicture.style.display = "block"; // Rendre le label visible à nouveau
+
+  // Appeler verifForm pour mettre à jour la validation
+  verifForm();
 }
 
 // Evènement au clic pour soumettre le formulaire et appeler les fonction de validation et de reset

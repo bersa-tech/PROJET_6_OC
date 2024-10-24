@@ -141,7 +141,8 @@ async function filterWorksByCategory(categoryId) {
 
       // `filter()` permet de filtrer le tableau `dataWorks` en ne conservant que les travaux dont l'ID de catégorie correspond à `categoryId`.
       const filteredWorks = dataWorks.filter(
-        (work) => work.categoryId === categoryId
+        // `filter()` est une méthode JavaScript qui permet de filtrer les éléments d'un tableau en fonction d'une condition spécifiée.
+        (work) => work.categoryId === categoryId //
       );
 
       // Pour chaque travail filtré, on crée et affiche une carte de travail comme dans la fonction `getWorks()`.
